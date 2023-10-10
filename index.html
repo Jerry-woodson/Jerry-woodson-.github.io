@@ -156,6 +156,99 @@
     
     
     <article
+  id="post-Computer Graphics Notes"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+     
+    <div class="article-meta">
+      <a href="/2023/10/10/Computer%20Graphics%20Notes/" class="article-date">
+  <time datetime="2023-10-10T05:15:51.319Z" itemprop="datePublished">2023-10-10</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1>Computer Graphics Notes</h1>
+
+<h2>多边形扫描转化算法和区域填充算法</h2>
+<h3>多边形扫描转换算法</h3>
+
+<p>能够充分利用相似性，但是硬件实现困难</p>
+<p>逐点判断:射线交点  圆弧<br>射线交点:奇数判断为内部  偶数判断为外部  注意需要考虑奇异点的情形</p>
+<p><img src="C:\Users\DELL\Desktop\Blog\blog\source\pics\pic1.jpg" alt="奇异点的类型"></p>
+<p>可以将逐点判断扩展为区域填充–可以直接使用交点的组合判断内部或者外部   使用快速增量可以在相邻扫描线求交点<br>$$<br>y_{i+1} &#x3D; y_{i} + 1 \<br>x_{i+1} &#x3D; x_{i} + 1&#x2F;k<br>$$<br>ET表（Edge table）–分类边表<br>AEL表（Activity Edge Link）–活动边表</p>
+<h4>对应的Data Structure</h4>
+
+<p><img src="C:\Users\DELL\Desktop\Blog\blog\source\pics\pic2.jpg"></p>
+<p>ET表：</p>
+<p>ymax用来判断是否需要剔除该条线段</p>
+<p>xmin用来表示最低点的横坐标</p>
+<p>delta表示1&#x2F;k</p>
+<p>AEL表：（AEL和当前边的交点数一定是偶数）</p>
+<p>ymax用来判断是否需要剔除该条线段</p>
+<p>xmin用来表示当前扫描线与边的交点</p>
+<p>delta表示1&#x2F;k</p>
+<h3>边填充算法</h3>
+
+<p>使用正负相消实现填充，外部穿过偶数次点，内部穿过奇数次点</p>
+<h3>区域填充算法</h3>
+
+<p>区域填充算法有内区域表示和边界表示两种表示方式</p>
+<p>区域填充算法经典的有简单种子填充算法和扫描线种子填充算法</p>
+<p>两种连通区域：</p>
+<p>四连通区域：有时不能通过狭窄的区域</p>
+<p>八连通区域</p>
+<p><img src="C:\Users\DELL\Desktop\Blog\blog\source\pics\pic3.jpg"></p>
+<p>内区域表示（四点+递归）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">FloodFill4</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> oldColors, <span class="type">int</span> newColors)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(getPixel(x,y) == oldColors) &#123;</span><br><span class="line">        setPixel(x, y, oldColors, newColors);</span><br><span class="line">        <span class="comment">//下面递归调用上下左右的4个点</span></span><br><span class="line">        FloodFill4(x<span class="number">-1</span>, y, oldColors, newColors);</span><br><span class="line">        FloodFill4(x+<span class="number">1</span>, y, oldColors, newColors);</span><br><span class="line">        FloodFill4(x, y+<span class="number">1</span>, oldColors, newColors);</span><br><span class="line">        FloodFill4(x, y<span class="number">-1</span>, oldColors, newColors);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：以上为伪代码</p>
+<blockquote>
+<p>思考：如何将递归改为非递归</p>
+</blockquote>
+<p>使用系统栈的方式可以将递归改为非递归</p>
+<p>系统栈容量的限制为1M</p>
+<p>进行浮点数表示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fabs</span>(A-B) &lt; eps</span><br></pre></td></tr></table></figure>
+
+<p>进行整数表示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A == B</span><br></pre></td></tr></table></figure>
+
+<p>扫描线种子填充算法的特殊情形：<br>若有多段，每一段都需要入栈</p>
+<p><img src="C:\Users\DELL\Desktop\Blog\blog\source\pics\pic4.jpg"></p>
+<p>若出现以上的特殊情形，则需要将1和2两个点都入栈</p>
+<h3>Idea:</h3>
+为什么需要ET?
+
+<blockquote>
+<p>建立边表有序，方便后续进行排序</p>
+</blockquote>
+<p>为什么需要AEL,AEL和ET之间有什么区别?</p>
+<p>在进行画面刷新的时候，如何实现ET表不需要重新建立?</p>
+<p>思考多边形内部如何填充图案?</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-Algorithm Notes"
   class="article article-type-post"
   itemscope
@@ -228,7 +321,7 @@
 
 
 
-<h2> 
+<h2><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
       <!-- reward -->
       
     </div>
@@ -274,7 +367,8 @@
 </ul>
 <h2>配置代码的过程当中遇到的问题</h2>
 
- 
+<p>现在代码需要完成的任务是调整model的架构。对于原有的model需要进行修改，替换为自己方法的model，这个是这一步自己需要实现的功能。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
       <!-- reward -->
       
     </div>
@@ -332,7 +426,7 @@
 <p>1.BEDSR-Net:the first deep network specifically designed for document image shadow removal</p>
 <p>2.Water-filling:estimate the shading artifacts, and use Lambertian surface model</p>
 <p>3.Removing the shadows from Images of Documents:correct the image with the shadow map to produce the final unshadowed output</p>
- 
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
       <!-- reward -->
       
     </div>
@@ -377,7 +471,7 @@
 	</div>
 
 
- 
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
       <!-- reward -->
       
     </div>
@@ -415,7 +509,7 @@
   <h1>树莓派传感器的开发</h1>
 
 <p>这个小开发是为了完成大学生创新创业训练项目而做的。自己自学了树莓派传感器开发，微信小程序制作，远程服务器的使用以及如何实现前后端的交互。</p>
- 
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
       <!-- reward -->
       
     </div>
@@ -460,7 +554,7 @@
 	</div>
 
 
- 
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
       <!-- reward -->
       
     </div>
@@ -505,7 +599,7 @@
 	</div>
 
 
- 
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
       <!-- reward -->
       
     </div>
@@ -558,7 +652,7 @@
 	</div>
 
 
- 
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
       <!-- reward -->
       
     </div>
@@ -655,52 +749,7 @@
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\href</span>&#123;<span class="link">https://github.com/Jerry-woodson/Text-shading</span>&#125;&#123;https://github.com/Jerry-woodson/Text-shading&#125;</span><br></pre></td></tr></table></figure>
 
 <p>其中，第一个大括号表示需要跳转的网址，第二个大括号表示显示的文本内容。在论文当中，二者通常是相同的。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-feelings"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-     
-    <div class="article-meta">
-      <a href="/2023/10/02/feelings/" class="article-date">
-  <time datetime="2023-10-02T08:54:49.232Z" itemprop="datePublished">2023-10-02</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1>搭建博客时的心得</h1>
-
-<p>受浙江大学黄隆钤学长博客的影响，自己也希望能够搭建一个自己的博客，能够记录自己平时的一些学习的痕迹以及生活的一些感悟。其实自己在2023年7月的时候已经完成了博客框架的搭建，但是当时使用的是最普通的模板，所以视觉效果并不是很好。恰好国庆在家有一些时间，所以又重新拾起来，继续完善博客的搭建。</p>
-<p>博客使用的主题是Hexo的ayer主题</p>
-<ul>
-<li><input disabled="" type="checkbox"> TODOs:</li>
-<li><input disabled="" type="checkbox"> 完善博客基本结构的搭建</li>
-<li><input disabled="" type="checkbox"> 增加自己的一些个人信息</li>
-<li><input disabled="" type="checkbox"> 增加自己博客的一些特色</li>
-</ul>
- 
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
       <!-- reward -->
       
     </div>
@@ -721,6 +770,11 @@
   </article>
   
 
+  
+  <nav class="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
   
 </section>
 </div>
