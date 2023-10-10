@@ -55,7 +55,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-Computer Graphics Notes"
+  id="post-Enterprise Application Development Notes"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -64,15 +64,15 @@
   <div class="article-inner">
      
     <div class="article-meta">
-      <a href="/2023/10/10/Computer%20Graphics%20Notes/" class="article-date">
-  <time datetime="2023-10-10T05:15:51.319Z" itemprop="datePublished">2023-10-10</time>
+      <a href="/2023/10/10/Enterprise%20Application%20Development%20Notes/" class="article-date">
+  <time datetime="2023-10-10T10:42:55.138Z" itemprop="datePublished">2023-10-10</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">631</span>
+            <span class="post-count">320</span>
         </span>
     </span>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">1 min</span>
         </span>
     </span>
 </div>
@@ -96,64 +96,45 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>Computer Graphics Notes</h1>
+  <h1>Enterprise Application Development Notes</h1>
 
-<h2>多边形扫描转化算法和区域填充算法</h2>
-<h3>多边形扫描转换算法</h3>
+<h2>Some ideas about the course</h2>
 
-<p>能够充分利用相似性，但是硬件实现困难</p>
-<p>逐点判断:射线交点  圆弧<br>射线交点:奇数判断为内部  偶数判断为外部  注意需要考虑奇异点的情形</p>
-<p><img src="C:\Users\DELL\Desktop\Blog\blog\source\pics\pic1.jpg" alt="奇异点的类型"></p>
-<p>可以将逐点判断扩展为区域填充–可以直接使用交点的组合判断内部或者外部   使用快速增量可以在相邻扫描线求交点<br>$$<br>y_{i+1} &#x3D; y_{i} + 1 \<br>x_{i+1} &#x3D; x_{i} + 1&#x2F;k<br>$$<br>ET表（Edge table）–分类边表<br>AEL表（Activity Edge Link）–活动边表</p>
-<h4>对应的Data Structure</h4>
+<p>这门课程更加侧重于实践的应用开发，需要通过实践的方式加深对相关技术和技巧的理解。自己需要在设计开发的时候多去思考每一个组件如此设计的原因，自己多去思考理解才能加深对相关内容的理解。</p>
+<h2>Notes</h2>
 
-<p><img src="C:\Users\DELL\Desktop\Blog\blog\source\pics\pic2.jpg"></p>
-<p>ET表：</p>
-<p>ymax用来判断是否需要剔除该条线段</p>
-<p>xmin用来表示最低点的横坐标</p>
-<p>delta表示1&#x2F;k</p>
-<p>AEL表：（AEL和当前边的交点数一定是偶数）</p>
-<p>ymax用来判断是否需要剔除该条线段</p>
-<p>xmin用来表示当前扫描线与边的交点</p>
-<p>delta表示1&#x2F;k</p>
-<h3>边填充算法</h3>
+<h3>Javaweb的入门</h3>
 
-<p>使用正负相消实现填充，外部穿过偶数次点，内部穿过奇数次点</p>
-<h3>区域填充算法</h3>
+<h4>JSP的底层原理</h4>
 
-<p>区域填充算法有内区域表示和边界表示两种表示方式</p>
-<p>区域填充算法经典的有简单种子填充算法和扫描线种子填充算法</p>
-<p>两种连通区域：</p>
-<p>四连通区域：有时不能通过狭窄的区域</p>
-<p>八连通区域</p>
-<p><img src="C:\Users\DELL\Desktop\Blog\blog\source\pics\pic3.jpg"></p>
-<p>内区域表示（四点+递归）</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">FloodFill4</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> oldColors, <span class="type">int</span> newColors)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(getPixel(x,y) == oldColors) &#123;</span><br><span class="line">        setPixel(x, y, oldColors, newColors);</span><br><span class="line">        <span class="comment">//下面递归调用上下左右的4个点</span></span><br><span class="line">        FloodFill4(x<span class="number">-1</span>, y, oldColors, newColors);</span><br><span class="line">        FloodFill4(x+<span class="number">1</span>, y, oldColors, newColors);</span><br><span class="line">        FloodFill4(x, y+<span class="number">1</span>, oldColors, newColors);</span><br><span class="line">        FloodFill4(x, y<span class="number">-1</span>, oldColors, newColors);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注：以上为伪代码</p>
+<p>JSP-&gt;Java文件-&gt;（编译）-&gt;Java.class-&gt;web</p>
 <blockquote>
-<p>思考：如何将递归改为非递归</p>
+<p>H5直接写到writer当中，Java是通过response直接返回html的标签</p>
 </blockquote>
-<p>使用系统栈的方式可以将递归改为非递归</p>
-<p>系统栈容量的限制为1M</p>
-<p>进行浮点数表示：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fabs</span>(A-B) &lt; eps</span><br></pre></td></tr></table></figure>
+<h4>Servlet的基本原理</h4>
 
-<p>进行整数表示：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A == B</span><br></pre></td></tr></table></figure>
+<p>Servlet的3种初始化方式，其中有2种需要在web.xml当中进行配置，一种是通过@WebServlet标签进行</p>
+<h4>单例模式</h4>
 
-<p>扫描线种子填充算法的特殊情形：<br>若有多段，每一段都需要入栈</p>
-<p><img src="C:\Users\DELL\Desktop\Blog\blog\source\pics\pic4.jpg"></p>
-<p>若出现以上的特殊情形，则需要将1和2两个点都入栈</p>
-<h3>Idea:</h3>
-为什么需要ET?
+<p>单例模式的初始化有3种方式，其中的两种中一种是饿汉式，一种是懒汉式。</p>
+<blockquote>
+<p>饿汉式：Java在加载类的时候即完成初始化</p>
+</blockquote>
+<blockquote>
+<p>懒汉式：使用方法的时候才进行初始化——可能会存在一定的线程安全问题</p>
+</blockquote>
+<h4>其他</h4>
+
+<p>早期前后端通常是放在一起，常见的有Javaweb、MVC</p>
+<p>后来逐渐出现了前后端分离</p>
+<h4>请求转发和重定向</h4>
 
 <blockquote>
-<p>建立边表有序，方便后续进行排序</p>
+<p>常见的操作码：<br>成功 200</p>
+<p>不可预知 500</p>
+<p>找不到 404</p>
+<p>重定向 301</p>
 </blockquote>
-<p>为什么需要AEL,AEL和ET之间有什么区别?</p>
-<p>在进行画面刷新的时候，如何实现ET表不需要重新建立?</p>
-<p>思考多边形内部如何填充图案?</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
       <!-- reward -->
       
@@ -224,7 +205,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/10/10/Computer%20Graphics%20Notes/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/10/10/Enterprise%20Application%20Development%20Notes/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -235,17 +216,8 @@
    
   <nav class="article-nav">
     
-      <a href="/2023/10/10/Enterprise%20Application%20Development%20Notes/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            (no title)
-          
-        </div>
-      </a>
     
-    
-      <a href="/2023/10/09/Algorithm%20Notes/" class="article-nav-link">
+      <a href="/2023/10/10/Computer%20Graphics%20Notes/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
         <div class="article-nav-title"></div>
       </a>

@@ -156,6 +156,103 @@
     
     
     <article
+  id="post-Latex基本应用的学习"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+     
+    <div class="article-meta">
+      <a href="/2023/10/04/Latex%E5%9F%BA%E6%9C%AC%E5%BA%94%E7%94%A8%E7%9A%84%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2023-10-04T00:27:19.505Z" itemprop="datePublished">2023-10-04</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1>Latex基本应用的学习</h1>
+
+<blockquote>
+<p>Talk is cheap, show me the code.</p>
+<p><img src="C:\Users\DELL\Desktop\talk_is_cheap.png"></p>
+</blockquote>
+<h2>前言：</h2>
+
+<p>Latex是什么？Latex是一个“非所见即所得”的排版系统，需要通过特定的代码进行编写。相较于Word而言，其具有更高的规范性，能够更加适合学术论文的书写以及排版的相关工作。</p>
+<h2>Latex环境的配置和安装</h2>
+
+<p>Latex的使用分为在线和离线的两种方式，在线可以直接使用overleaf进行论文撰写等相关操作；对于离线，可以通过Tex-live的<a target="_blank" rel="noopener" href="https://tug.org/texlive/">官网</a></p>
+<p>或者国内的镜像站进行下载。对于Latex编辑器，推荐使用TexWorks，方便使用和上手。</p>
+<h2>1.Latex文档的类型</h2>
+
+<p>对于Latex而言，有英文和中文的支持文档，英文的有article, book, beamer等；中文的有ctexbook, ctexart, ctexbeamer</p>
+<h2>2..Latex公式的输入</h2>
+
+<p>行间等式的输入：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line">a = b<span class="built_in">^</span>2 + <span class="keyword">\frac</span>&#123;m&#125;&#123;3&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;equation&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>其他：</p>
+<p>属于：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/in</span><br></pre></td></tr></table></figure>
+
+<p>不属于：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/notin</span><br></pre></td></tr></table></figure>
+
+<p>角标：</p>
+<p>左上角</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">^</span>&#123;b&#125;A</span><br></pre></td></tr></table></figure>
+
+
+<p>左下角</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">_</span>&#123;b&#125;A</span><br></pre></td></tr></table></figure>
+
+
+<p>右上角</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A<span class="built_in">^</span>&#123;b&#125;</span><br></pre></td></tr></table></figure>
+
+<p>右下角</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A<span class="built_in">_</span>&#123;b&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尖帽：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\hat</span></span><br></pre></td></tr></table></figure>
+
+<p>求和号：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span><span class="keyword">\sum</span><span class="built_in">_</span>&#123;i=0&#125;<span class="built_in">^</span>n<span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+
+<p>多行公式的换行符：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;align&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;align&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：需要再多熟悉一下多行公式的键入</p>
+<h2>3.超链接的插入</h2>
+
+<h3>3.1网页超链接的引用</h3>
+
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\href</span>&#123;<span class="link">https://github.com/Jerry-woodson/Text-shading</span>&#125;&#123;https://github.com/Jerry-woodson/Text-shading&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，第一个大括号表示需要跳转的网址，第二个大括号表示显示的文本内容。在论文当中，二者通常是相同的。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-feelings"
   class="article article-type-post"
   itemscope
