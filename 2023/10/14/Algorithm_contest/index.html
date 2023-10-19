@@ -55,7 +55,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-Algorithm Notes"
+  id="post-Algorithm_contest"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -64,15 +64,15 @@
   <div class="article-inner">
      
     <div class="article-meta">
-      <a href="/2023/10/09/Algorithm%20Notes/" class="article-date">
-  <time datetime="2023-10-09T11:58:46.690Z" itemprop="datePublished">2023-10-09</time>
+      <a href="/2023/10/14/Algorithm_contest/" class="article-date">
+  <time datetime="2023-10-14T02:34:00.489Z" itemprop="datePublished">2023-10-14</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">603</span>
+            <span class="post-count">8</span>
         </span>
     </span>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">1 min</span>
         </span>
     </span>
 </div>
@@ -96,63 +96,9 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>Algorithm Notes</h1>
+  <h1>算法竞赛学习笔记</h1>
 
-<p>感谢授课老师刘征老师,年过半百仍然在三尺讲台辛勤耕耘</p>
-<h2>递归与分治</h2>
-
-<p>这部分内容是上一个月学习的内容，有时间补充一下</p>
-<h2>动态规划</h2>
-
-<p>动态规划是根据当前状态确定最优解的一种方法</p>
-<h4>动态规划的基本性质</h4>
-
-<p>最优子结构性质  重叠子问题性质  最优化问题 无后效性</p>
-<p>无后效性的深入理解：</p>
-<p>1.当前的值只由<code>过去的值</code>决定，而不能由未来的值决定</p>
-<p>2.一旦求解，就不能发生变化</p>
-<p>3.后续子问题不会影响先前子问题</p>
-<h4>记忆化递归</h4>
-
-<p>定义一个状态矩阵，把计算过的子问题的解记录下来</p>
-<p>遇到一个问题时，先查询是否已经求解且有记忆</p>
-<p>若有，则有限求解记忆值</p>
-<p>否则，无限求解并记忆</p>
-<h4>Notes</h4>
-
-<p>子问题的最优解是父问题最优解的必要条件—-&gt;需要综合子问题求解父问题</p>
-<p>子问题不是相互独立的</p>
-<p><code>dp[M][N]</code>以空间换时间，可以避免重复计算</p>
-<p>由于重叠子问题的特点决定了不能仅使用分治的方法求解</p>
-<p>子问题的最优解只依赖于当前状态（马尔可夫过程）</p>
-<p><strong>辨析递归和递推：</strong></p>
-<p>递推：人为划定边界，自底向上递推</p>
-<p>递归：递归下降找边界，自下向上合并到根问题</p>
-<p>子问题的改性定义</p>
-<p>dp[i] [j]:是存储&#x2F;记忆(i,j)的最优解</p>
-<p>动态规划需要确定起点和方向</p>
-<p>动态规划不是调用函数，而是利用已经求解的值进行求解</p>
-<p>最优解是标量解，最优解的构成是矢量解</p>
-<p>状态的2个基本名词：<br>state:表示普通状态（多个要素的状态）</p>
-<p>status：表示标志性状态</p>
-<p>记忆化递归—-是动态规划的初级版本，可以避免重复的递归</p>
-<p><strong>辨析记忆化递归和动态规划</strong></p>
-<p>记忆化递归：2个递归调用来填充未知元素，需要进行判断</p>
-<p>动态规划：2个已知元素来填充未知元素，不需要进行判断</p>
-<p>数列是无限的，数组是有限的</p>
-<h3>经典问题</h3>
-
-<h4>矩阵连乘问题</h4>
-
-<h4>最长公共子序列</h4>
-
-
-
-
-
-
-
-<h2><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
       <!-- reward -->
       
       <div id="reword-out">
@@ -222,7 +168,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/10/09/Algorithm%20Notes/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/10/14/Algorithm_contest/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -233,7 +179,7 @@
    
   <nav class="article-nav">
     
-      <a href="/2023/10/10/Computer%20Graphics%20Notes/" class="article-nav-link">
+      <a href="/2023/10/19/%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0%E7%9A%84%E6%92%B0%E5%86%99%E6%80%9D%E8%B7%AF/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
@@ -243,7 +189,7 @@
       </a>
     
     
-      <a href="/2023/10/08/4K-shadow/" class="article-nav-link">
+      <a href="/2023/10/10/Enterprise%20Application%20Development%20Notes/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
         <div class="article-nav-title"></div>
       </a>
