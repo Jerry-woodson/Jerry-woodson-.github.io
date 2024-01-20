@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title> Jiarui&#39;s Blog</title>
+      <title>Archives: 2024/1 |  Jiarui&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,217 +54,47 @@
       
     <main class="content on">
       <section class="outer">
-  <article
-  id="post-Computer Graphics Notes"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-     
-    <div class="article-meta">
-      <a href="/2023/10/10/Computer%20Graphics%20Notes/" class="article-date">
-  <time datetime="2023-10-10T05:15:51.319Z" itemprop="datePublished">2023-10-10</time>
-</a>   
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">631</span>
-        </span>
-    </span>
-
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
-        </span>
-    </span>
-</div>
- 
-    </div>
-      
-    <div class="tocbot"></div>
-
-
-
-
   
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1>Computer Graphics Notes</h1>
-
-<h2>多边形扫描转化算法和区域填充算法</h2>
-<h3>多边形扫描转换算法</h3>
-
-<p>能够充分利用相似性，但是硬件实现困难</p>
-<p>逐点判断:射线交点  圆弧<br>射线交点:奇数判断为内部  偶数判断为外部  注意需要考虑奇异点的情形</p>
-<p><img src="C:\Users\DELL\Desktop\Blog\blog\source\pics\pic1.jpg" alt="奇异点的类型"></p>
-<p>可以将逐点判断扩展为区域填充–可以直接使用交点的组合判断内部或者外部   使用快速增量可以在相邻扫描线求交点<br>$$<br>y_{i+1} &#x3D; y_{i} + 1 \<br>x_{i+1} &#x3D; x_{i} + 1&#x2F;k<br>$$<br>ET表（Edge table）–分类边表<br>AEL表（Activity Edge Link）–活动边表</p>
-<h4>对应的Data Structure</h4>
-
-<p><img src="C:\Users\DELL\Desktop\Blog\blog\source\pics\pic2.jpg"></p>
-<p>ET表：</p>
-<p>ymax用来判断是否需要剔除该条线段</p>
-<p>xmin用来表示最低点的横坐标</p>
-<p>delta表示1&#x2F;k</p>
-<p>AEL表：（AEL和当前边的交点数一定是偶数）</p>
-<p>ymax用来判断是否需要剔除该条线段</p>
-<p>xmin用来表示当前扫描线与边的交点</p>
-<p>delta表示1&#x2F;k</p>
-<h3>边填充算法</h3>
-
-<p>使用正负相消实现填充，外部穿过偶数次点，内部穿过奇数次点</p>
-<h3>区域填充算法</h3>
-
-<p>区域填充算法有内区域表示和边界表示两种表示方式</p>
-<p>区域填充算法经典的有简单种子填充算法和扫描线种子填充算法</p>
-<p>两种连通区域：</p>
-<p>四连通区域：有时不能通过狭窄的区域</p>
-<p>八连通区域</p>
-<p><img src="C:\Users\DELL\Desktop\Blog\blog\source\pics\pic3.jpg"></p>
-<p>内区域表示（四点+递归）</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">FloodFill4</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> oldColors, <span class="type">int</span> newColors)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(getPixel(x,y) == oldColors) &#123;</span><br><span class="line">        setPixel(x, y, oldColors, newColors);</span><br><span class="line">        <span class="comment">//下面递归调用上下左右的4个点</span></span><br><span class="line">        FloodFill4(x<span class="number">-1</span>, y, oldColors, newColors);</span><br><span class="line">        FloodFill4(x+<span class="number">1</span>, y, oldColors, newColors);</span><br><span class="line">        FloodFill4(x, y+<span class="number">1</span>, oldColors, newColors);</span><br><span class="line">        FloodFill4(x, y<span class="number">-1</span>, oldColors, newColors);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注：以上为伪代码</p>
-<blockquote>
-<p>思考：如何将递归改为非递归</p>
-</blockquote>
-<p>使用系统栈的方式可以将递归改为非递归</p>
-<p>系统栈容量的限制为1M</p>
-<p>进行浮点数表示：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fabs</span>(A-B) &lt; eps</span><br></pre></td></tr></table></figure>
-
-<p>进行整数表示：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A == B</span><br></pre></td></tr></table></figure>
-
-<p>扫描线种子填充算法的特殊情形：<br>若有多段，每一段都需要入栈</p>
-<p><img src="C:\Users\DELL\Desktop\Blog\blog\source\pics\pic4.jpg"></p>
-<p>若出现以上的特殊情形，则需要将1和2两个点都入栈</p>
-<h3>Idea:</h3>
-为什么需要ET?
-
-<blockquote>
-<p>建立边表有序，方便后续进行排序</p>
-</blockquote>
-<p>为什么需要AEL,AEL和ET之间有什么区别?</p>
-<p>在进行画面刷新的时候，如何实现ET表不需要重新建立?</p>
-<p>思考多边形内部如何填充图案?</p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script> 
-      <!-- reward -->
+  
+  <article class="articles">
+    
+    
+    <h1 class="page-type-title">2024/1</h1>
+    
+    
+  
+  
+  
+  
+  
+  
+  <div class="archives-wrap">
+    <div class="archive-year-wrap">
+      <a href="/archives/2024" class="archive-year">2024</a>
+    </div>
+    <div class="archives">
       
-      <div id="reword-out">
-        <div id="reward-btn">
-          Donate
-        </div>
-      </div>
+      <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2024/01/20/Computer_graphics/" class="archive-article-date">
+  <time datetime="2024-01-20T01:26:14.192Z" itemprop="datePublished">01/20</time>
+</a>
       
-    </div>
-    
 
-    <!-- copyright -->
+    </header>
     
-    <div class="declare">
-      <ul class="post-copyright">
-        <li>
-          <i class="ri-copyright-line"></i>
-          <strong>Copyright： </strong>
-          
-          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
-          
-        </li>
-      </ul>
-    </div>
     
-    <footer class="article-footer">
-       
-<div class="share-btn">
-      <span class="share-sns share-outer">
-        <i class="ri-share-forward-line"></i>
-        分享
-      </span>
-      <div class="share-wrap">
-        <i class="arrow"></i>
-        <div class="share-icons">
-          
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="ri-weibo-fill"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="ri-wechat-fill"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="ri-qq-fill"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="ri-douban-line"></i>
-          </a>
-          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a> -->
-          
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="ri-facebook-circle-fill"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="ri-twitter-fill"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="ri-google-fill"></i>
-          </a>
-        </div>
-      </div>
-</div>
-
-<div class="wx-share-modal">
-    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/10/10/Computer%20Graphics%20Notes/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div id="share-mask"></div>  
-    </footer>
   </div>
-
-   
-  <nav class="article-nav">
-    
-      <a href="/2023/10/10/Enterprise%20Application%20Development%20Notes/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            (no title)
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2023/10/09/Algorithm%20Notes/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title"></div>
-      </a>
-    
-  </nav>
+</article>
+      
+      
+    </div>
+  </div>
+  
+  
 
   
-   
-    
-    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
-    <div id="twikoo" class="twikoo"></div>
-    <script>
-        twikoo.init({
-            envId: ""
-        })
-    </script>
- 
-</article>
-
 </section>
       <footer class="footer">
   <div class="outer">
@@ -413,22 +243,6 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
- 
-<script src="/js/tocbot.min.js"></script>
-
-<script>
-  tocbot.init({
-    tocSelector: ".tocbot",
-    contentSelector: ".article-entry",
-    headingSelector: "h1, h2, h3, h4, h5, h6",
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollContainer: "main",
-    positionFixedSelector: ".tocbot",
-    positionFixedClass: "is-position-fixed",
-    fixedSidebarOffset: "auto",
-  });
-</script>
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 <link
